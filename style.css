@@ -56,15 +56,20 @@ html{
     border-radius: 25px;
     width: 60%;
     height: 250px;
+    background:url(./Image/img7.jpg);
 }
 
-.display{
+.image{
     display: flex;
     align-items: center;
     justify-content: center;
-    background:url(./Image/img7.jpg);
-    border-radius: 25px;
 }
+
+.display {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+} 
 
 .temp{
     color:black;

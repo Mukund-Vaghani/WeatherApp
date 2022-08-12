@@ -1,15 +1,40 @@
 const api_key = `43e2397f961ae78dca0bd575f8aab453`;
+const unsplash_key = `ZMNEigAskJfGuvmPeGbe-fsmehbWw_RK5rfYOOX1Phs`
 
 const form = document.querySelector('.form');
 const search = document.querySelector('.search_item');
 const weather = document.querySelector('#weather');
+const image = document.querySelector('.image');
+
+const getcity = async (city) => {
+    image.innerHTML=`Loading..`
+    const url = `https://api.unsplash.com/photos/?client_id=${unsplash_key}&query=${city}`;
+    const respons = await fetch(url);
+    // console.log(respons);
+    const data = await respons.json();
+    // const img = data[0].urls.raw;
+    console.log(data);
+    return showcity(data);
+}
+
+const showcity = (data) => {
+    // const img = data[0].urls.raw;
+    if (respons.cod == "404") {
+            image.innerHTML = `<h2>City not Found</h2>`;
+    return;
+}
+image.innerHTML = `
+<div class="unsplah_img">
+<img src="https://unsplash.com/photos/${data[0].urls.small}"/>
+</div>`
+}
 
 const getweather = async (city) => {
     weather.innerHTML = `Loading...`;
-    const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=43e2397f961ae78dca0bd575f8aab453&units=metric`;
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${api_key}&units=metric`;
     const respons = await fetch(url);
     const data = await respons.json();
-    console.log(data);
+    // console.log(data);
     return showweather(data);
 }
 
@@ -34,10 +59,12 @@ const showweather = (data) => {
         </div>`
 }
 
+
 form.addEventListener(
     'submit',
-    function(event) {   
+    function (event) {
         getweather(search.value);
+        getcity(search.value);
         event.preventDefault();
-    }
+    }   
 )
