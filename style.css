@@ -82,3 +82,7 @@ html{
     color: black;
 }
 
+.unsplash_img img{
+height: 240px;
+width: 300px;
+}
