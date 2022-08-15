@@ -8,24 +8,21 @@ const image = document.querySelector('.image');
 
 const getcity = async (city) => {
     image.innerHTML=`Loading..`
-    const url = `https://api.unsplash.com/photos/?client_id=${unsplash_key}&query=${city}`;
+    const url = `https://api.unsplash.com/search/photos/?client_id=${unsplash_key}&query=${city}`;
     const respons = await fetch(url);
-    // console.log(respons);
     const data = await respons.json();
-    // const img = data[0].urls.raw;
     console.log(data);
     return showcity(data);
 }
 
 const showcity = (data) => {
-    // const img = data[0].urls.raw;
-    if (respons.cod == "404") {
+    if (data.cod == "404") {
             image.innerHTML = `<h2>City not Found</h2>`;
     return;
 }
 image.innerHTML = `
-<div class="unsplah_img">
-<img src="https://unsplash.com/photos/${data[0].urls.small}"/>
+<div class="unsplash_img">
+<img src = '${data.results[1].urls.small}'>
 </div>`
 }
 
